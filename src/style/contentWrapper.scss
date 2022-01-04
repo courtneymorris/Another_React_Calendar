@@ -26,31 +26,40 @@
 
 .content-wrapper {
   width: 85vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .calendar-wrapper {
+    justify-items: space-evenly;
     display: grid;
     grid-template: 25px repeat(6, 1fr) / repeat(7, 1fr);
-    border: 3px solid turquoise;
+    gap: 1px;
+    background-color: turquoise;
 
     .day-of-week {
-      border: 1px solid turquoise;
+      background-color: black;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 14px;
+      font-family: "Lobster Two", cursive;
+      color: pink;
+      font-size: 13px;
     }
 
     .calendar-box {
+      background-color: black;
       color: pink;
-      border: 1px solid turquoise;
       display: grid;
-      grid-template: 25px 1fr / 25px 1fr;
+      grid-template: 1fr 3fr / 1fr 6fr;
 
       span {
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 10px;
+        font-family: "Open Sans Condensed", sans-serif;
+        padding: 2px 0px 0px 2px;
       }
 
       textarea {
@@ -59,8 +68,11 @@
         background-color: transparent;
         border: 1px solid transparent;
         resize: none;
-        font-size: 8px;
+        font-size: 10px;
+        text-align: center;
         color: turquoise;
+        font-family: "Open Sans Condensed", sans-serif;
+        padding: 0;
 
         &:focus {
           outline: none;

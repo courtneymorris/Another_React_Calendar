@@ -58,6 +58,16 @@ export default class CalendarBox extends Component {
           }
         })
         .catch((error) => console.log("Error updating reminder", error));
+    } else if (this.state.reminderExists && this.state.textInput === "") {
+      fetch(
+        `https://api-calendar-cms.herokuapp.com/reminder/delete/${this.props.month.id}/${this.props.date}`,
+        {
+          method: "DELETE",
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => this.setState({ reminderExists: false }))
+        .catch((error) => console.log("Error deleting reminder", error));
     }
   }
 
