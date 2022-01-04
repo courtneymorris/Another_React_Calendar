@@ -68,12 +68,14 @@ export default class App extends Component {
   render() {
     return (
       <div className="app">
-        <Header
-          monthName={this.state.month.name}
-          handleMonthChange={this.handleMonthChange}
-        />
-        <ContentWrapper month={this.state.month} />
-        <Footer monthYear={this.state.month.year} />
+        <div className="page-wrapper">
+          <Header
+            monthName={this.state.month.name}
+            handleMonthChange={this.handleMonthChange}
+          />
+          <ContentWrapper month={this.state.month} />
+          <Footer monthYear={this.state.month.year} />
+        </div>
       </div>
     );
   }
