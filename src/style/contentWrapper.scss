@@ -1,0 +1,74 @@
+.header-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 85vw;
+  font-family: "Lobster Two", cursive;
+  color: pink;
+
+  .icon {
+    color: pink;
+    font-size: 35px;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.footer-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 85vw;
+  font-family: "Lobster Two", cursive;
+  color: pink;
+}
+
+.content-wrapper {
+  width: 85vw;
+
+  .calendar-wrapper {
+    display: grid;
+    grid-template: 25px repeat(6, 1fr) / repeat(7, 1fr);
+    border: 3px solid turquoise;
+
+    .day-of-week {
+      border: 1px solid turquoise;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .calendar-box {
+      color: pink;
+      border: 1px solid turquoise;
+      display: grid;
+      grid-template: 25px 1fr / 25px 1fr;
+
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 10px;
+      }
+
+      textarea {
+        grid-row: 2;
+        grid-column: 1 / -1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        resize: none;
+        font-size: 8px;
+        color: turquoise;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    .overflow {
+      color: rgb(204, 108, 204);
+    }
+  }
+}
