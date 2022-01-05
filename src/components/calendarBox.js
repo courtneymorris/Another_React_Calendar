@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+
 export default class CalendarBox extends Component {
   constructor(props) {
     super(props);
@@ -13,12 +16,15 @@ export default class CalendarBox extends Component {
     this.state = {
       reminderExists: reminder ? true : false,
       textInput: reminder ? reminder.text : "",
+      editMode: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
+
     if (!this.state.reminderExists && this.state.textInput !== "") {
       fetch("https://api-calendar-cms.herokuapp.com/reminder/add", {
         method: "POST",
@@ -69,6 +75,10 @@ export default class CalendarBox extends Component {
         .then((data) => this.setState({ reminderExists: false }))
         .catch((error) => console.log("Error deleting reminder", error));
     }
+
+    this.setState({
+      editMode: false,
+    });
   }
 
   render() {
@@ -79,13 +89,32 @@ export default class CalendarBox extends Component {
         }
       >
         <span>{this.props.date}</span>
-        <textarea
-          disabled={this.props.overflow}
-          onBlur={this.handleSubmit}
-          value={this.state.textInput}
-          onChange={((event) =>
-            this.setState({ textInput: event.target.value })).bind(this)}
-        ></textarea>
+        <form onSubmit={this.handleSubmit}>
+          <textarea
+            disabled={this.props.overflow}
+            // onBlur={this.handleSubmit}
+            value={this.state.textInput}
+            onFocus={(() => this.setState({ editMode: true })).bind(this)}
+            onBlur={(() =>
+              this.setState({
+                editMode: false,
+                textInput:
+                  this.props.month.reminders.text[
+                    this.props.month.reminders.date
+                  ],
+              })).bind(this)}
+            onChange={((event) =>
+              this.setState({
+                textInput: event.target.value,
+              })).bind(this)}
+          ></textarea>
+          <FontAwesomeIcon
+            className="calendar-box-icon"
+            icon={this.state.editMode ? faCheckCircle : faPlusCircle}
+            onClick={this.handleSubmit}
+            type="submit"
+          />
+        </form>
       </div>
     );
   }

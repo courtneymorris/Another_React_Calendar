@@ -62,25 +62,44 @@
           padding: 2px 0px 0px 2px;
         }
 
-        textarea {
+        form {
           grid-row: 2;
           grid-column: 1 / -1;
-          background-color: transparent;
-          border: 1px solid transparent;
-          resize: none;
-          font-size: 10px;
-          text-align: center;
-          color: turquoise;
-          font-family: "Open Sans Condensed", sans-serif;
-          padding: 0;
+          display: grid;
+          grid-template-areas:
+            "textArea textArea textArea ."
+            "textArea textArea textArea ."
+            "textArea textArea textArea ."
+            "textArea textArea textArea boxIcon";
 
-          &:focus {
-            outline: none;
+          textarea {
+            grid-area: textArea;
+            background-color: transparent;
+            border: 1px solid transparent;
+            resize: none;
+            font-size: 10px;
+            text-align: center;
+            color: turquoise;
+            font-family: "Open Sans Condensed", sans-serif;
+            padding: 0;
+
+            &:focus {
+              outline: none;
+            }
+          }
+
+          .calendar-box-icon {
+            grid-area: boxIcon;
+            font-size: 11px;
           }
         }
       }
       .overflow {
         color: rgb(204, 108, 204);
+
+        .calendar-box-icon {
+          display: none;
+        }
       }
     }
   }
